@@ -1,0 +1,71 @@
+// 所有引用库的版本都需要在这里面定义，统一版本
+//每个引用库需注明以下信息：1、功能简介；2、引用（下载地址）
+/**
+ *introduction：
+ * reference：
+ */
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    //Add the JitPack repository
+    handler.maven { url "https://jitpack.io" }
+    handler.maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+}
+
+ext.addRepos = this.&addRepos
+
+def versions = [:]
+
+versions.kotlin = "1.3.50"
+versions.android_gradle_build_tools = "3.5.2"
+
+versions.compile_sdk_version = 29
+versions.build_tools_version = "29.0.2"
+versions.min_sdk_version = 15
+versions.target_sdk_version = 28
+
+versions.androidx_appcompat = "1.1.0"
+versions.androidx_constraintlayout = "1.1.3"
+versions.material = "1.0.0"
+versions.test_junit = "4.12"
+versions.androidx_test_ext_junit = "1.1.1"
+versions.androidx_test_espresso = "3.2.0"
+versions.androidx_ktx = "1.1.0"
+
+/**
+ *introduction：
+ * reference：
+ */
+versions.androidx_futures = "1.0.0"
+/**
+ *introduction：
+ * reference：
+ */
+versions.androidx_lifecycle = "2.1.0"
+/**
+ *introduction：
+ * reference：
+ */
+versions.androidx_nav = "2.1.0"
+/**
+ *introduction：
+ * reference：
+ */
+versions.androidx_paging = "2.1.0"
+/**
+ *introduction：
+ * reference：
+ */
+versions.androidx_room = "2.2.1"
+/**
+ * introduction：The WorkManager API makes it easy to schedule deferrable, asynchronous tasks that must be run reliably .
+ * These APIs let you create a task and hand it off to WorkManager to run when the work constraints are met.
+ *
+ * reference：https://developer.android.google.cn/jetpack/androidx/releases/work
+ */
+versions.androidx_work = "2.2.0"
+
+ext.versions = versions
+

@@ -364,8 +364,8 @@ static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
 
 与意图相关的项使用完整的包名作为值的前缀
 ```
-static final String EXTRA_SURNAME = "com.suromo.think.extras.EXTRA_SURNAME";
-static final String ACTION_OPEN_USER = "com.suromo.think.action.ACTION_OPEN_USER";
+static final String EXTRA_SURNAME = "app_think.extras.EXTRA_SURNAME";
+static final String ACTION_OPEN_USER = "app_think.action.ACTION_OPEN_USER";
 ```
 
 
