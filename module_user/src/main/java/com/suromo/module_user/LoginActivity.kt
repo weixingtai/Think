@@ -1,19 +1,21 @@
-package com.suromo.module_home
+package com.suromo.module_user
 
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.suromo.module_common.BaseActivity
 
 /**
  *     author : weixingtai
  *     e-mail : xingtai.wei@icloud.com
  *     time   : 2019/11/17
- *     desc   : 首页模块入口
+ *     desc   : 登录模块
  *     version: 1.0
  */
-class HomeActivity : BaseActivity() {
+@Route(path = "/module_user/activity/login")
+class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.module_home_activity_home)
+        setContentView(R.layout.module_user_activity_login)
     }
 }

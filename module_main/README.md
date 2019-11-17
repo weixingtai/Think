@@ -1,0 +1,7 @@
+# Main模块
+
+
+Main组件除了有业务组件的普遍属性外，还有一项重要功能：
+
+1、Main组件集成模式下的AndroidManifest.xml是跟其他业务组件不一样的，Main组件的表单中声明了我们整个Android应用的launch Activity，
+这就是Main组件的独特之处；所以我建议SplashActivity、登陆Activity以及主界面都应属于Main组件，也就是说Android应用启动后要调用的页面应置于Main组件。

@@ -9,6 +9,6 @@ import androidx.fragment.app.Fragment
  *     desc   : Fragment基础类，实现异步框架，destroy时候销毁所有资源
  *     version: 1.0
  */
-class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment() {
     
 }

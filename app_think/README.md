@@ -1,0 +1,32 @@
+# Think APP 壳工程
+
+壳工程：负责管理各个业务组件，和打包apk，没有具体的业务功能；
+
+app壳工程是从名称来解释就是一个空壳工程，没有任何的业务代码，也不能有Activity，但它又必须被单独划分成一个组件，
+而不能融合到其他组件中，是因为它有如下几点重要功能：
+
+1、app壳工程中声明了我们Android应用的 Application，这个 Application 必须继承自 Common组件中的 BaseApplication
+（如果你无需实现自己的Application可以直接在表单声明BaseApplication），因为只有这样，在打包应用后才能让
+BaseApplication中的Context生效，当然你还可以在这个 Application中初始化我们工程中使用到的库文件，还可以在这里
+解决Android引用方法数不能超过 65535 的限制，对崩溃事件的捕获和发送也可以在这里声明。
+
+2、app壳工程的 AndroidManifest.xml 是我Android应用的根表单，应用的名称、图标以及是否支持备份等等属性都是在这份
+表单中配置的，其他组件中的表单最终在集成开发模式下都被合并到这份 AndroidManifest.xml 中。
+
+3、app壳工程的 build.gradle 是比较特殊的，app壳不管是在集成开发模式还是组件开发模式，它的属性始终都是：
+com.android.application，因为最终其他的组件都要被app壳工程所依赖，被打包进app壳工程中，这一点从组件化工程模型图
+中就能体现出来，所以app壳工程是不需要单独调试单独开发的。另外Android应用的打包签名，以及buildTypes和defaultConfig
+都需要在这里配置，而它的dependencies则需要根据isModule的值分别依赖不同的组件，在组件开发模式下app壳工程只需要依赖
+Common组件，或者为了防止报错也可以根据实际情况依赖其他功能组件，而在集成模式下app壳工程必须依赖所有在应用Application
+中声明的业务组件，并且不需要再依赖任何功能组件。
+
+
+组件化项目的Java代码混淆方案采用在集成模式下集中在app壳工程中混淆，各个业务组件不配置混淆文件。集成开发模式下在app壳
+工程中build.gradle文件的release构建类型中开启混淆属性，其他buildTypes配置方案跟普通项目保持一致，Java混淆配置文件也放置
+在app壳工程中，各个业务组件的混淆配置规则都应该在app壳工程中的混淆配置文件中添加和修改。
+
+之所以不采用在每个业务组件中开启混淆的方案，是因为 组件在集成模式下都被 Gradle 构建成了 release 类型的arr包，一旦业务组件
+的代码被混淆，而这时候代码中又出现了bug，将很难根据日志找出导致bug的原因；另外每个业务组件中都保留一份混淆配置文件非常不便
+于修改和管理，这也是不推荐在业务组件的 build.gradle 文件中配置 buildTypes （构建类型）的原因。
+
+

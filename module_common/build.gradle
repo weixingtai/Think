@@ -1,11 +1,14 @@
+//所有的项目依赖文件在这里面定义，避免重复定义
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion versions.compile_sdk_version
     buildToolsVersion versions.build_tools_version
 
     compileOptions {
+        // Java8支持
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -21,6 +24,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
+        //ARouter kotlin配置
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -29,7 +39,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    resourcePrefix "${project.name}_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+
+    //给 Module 内的资源名增加前缀, 避免资源名冲突
+    resourcePrefix "${project.name}_"
 }
 
 dependencies {
@@ -41,37 +53,27 @@ dependencies {
     api "com.google.android.material:material:$versions.material"
     api "androidx.concurrent:concurrent-futures:$versions.androidx_futures"
     api "androidx.lifecycle:lifecycle-extensions:$versions.androidx_lifecycle"
-
     api "androidx.vectordrawable:vectordrawable:$versions.androidx_vectordrawable"
     api "androidx.navigation:navigation-fragment:$versions.androidx_nav"
     api "androidx.navigation:navigation-ui:$versions.androidx_nav"
     api "androidx.lifecycle:lifecycle-extensions:$versions.androidx_nav"
-
-
-
+    api "android.arch.lifecycle:common-java8:$versions.androidx_lifecycle_common_java_8"
     api "androidx.navigation:navigation-fragment-ktx:$versions.androidx_nav"
     api "androidx.navigation:navigation-ui-ktx:$versions.androidx_nav"
     api "androidx.paging:paging-runtime:$versions.androidx_paging"
     api "androidx.paging:paging-rxjava2:$versions.androidx_paging"
     api "androidx.room:room-runtime:$versions.androidx_room"
-    // Kotlin + coroutines
     api "androidx.work:work-runtime-ktx:$versions.androidx_work"
-    // optional - RxJava2 support
     api "androidx.work:work-rxjava2:$versions.androidx_work"
-    // optional - GCMNetworkManager support
     api "androidx.work:work-gcm:$versions.androidx_work"
-
+    api "com.alibaba:arouter-api:$versions.arouter_api"
+    kapt "com.alibaba:arouter-compiler:$versions.arouter_compiler"
     annotationProcessor "androidx.room:room-compiler:$versions.androidx_room"
-
     testImplementation "junit:junit:$versions.test_junit"
     testImplementation "androidx.arch.core:core-testing:$versions.androidx_lifecycle"
     testImplementation "androidx.paging:paging-common:$versions.androidx_paging"
     testImplementation "androidx.room:room-testing:$versions.androidx_room"
-
-    // optional - Test helpers
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$versions.androidx_lifecycle"
     androidTestImplementation "androidx.work:work-testing:$versions.androidx_work"
     androidTestImplementation "androidx.test.ext:junit:$versions.androidx_test_ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx_test_espresso"
-
 }

@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".UserActivity"/>
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>
