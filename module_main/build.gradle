@@ -1,3 +1,4 @@
+//应用在组装时作为依赖库存在
 if (isAssembled.toBoolean()) {
     apply plugin: 'com.android.library'
 } else {
@@ -5,26 +6,39 @@ if (isAssembled.toBoolean()) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion versions.compile_sdk_version
     buildToolsVersion versions.build_tools_version
 
+    // Java8支持
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    //项目用jvm1.6进行构建，而库用到1.8版本导致不兼容
+    kotlinOptions { jvmTarget = 1.8}
 
     defaultConfig {
+        // 依赖库不应该有applicationId
         if (!isAssembled.toBoolean()){
             applicationId "com.suromo.module_main"
         }
+
         minSdkVersion versions.min_sdk_version
         targetSdkVersion versions.target_sdk_version
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //ARouter kotlin配置
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -33,7 +47,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    resourcePrefix "${project.name}_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+    //给 Module 内的资源名增加前缀, 避免资源名冲突
+    resourcePrefix "${project.name}_"
+    
     sourceSets {
         main {
             if (isAssembled.toBoolean()) {
@@ -52,4 +68,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_common')
+
+    //ARouter(模块中也要配置，配置无法编译路径，会报找不到路径的错误)
+    kapt "com.alibaba:arouter-compiler:$versions.arouter_compiler"
 }

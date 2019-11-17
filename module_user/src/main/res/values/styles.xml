@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="module_user_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/module_user_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/module_user_colorPrimaryDark</item>
+        <item name="colorAccent">@color/module_user_colorAccent</item>
     </style>
 
 </resources>
