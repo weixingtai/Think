@@ -1,2 +1,2 @@
-include ':app_think', ':module_common'
+include ':app_think', ':module_common', ':module_main', ':module_user', ':module_home'
 rootProject.name='Think'

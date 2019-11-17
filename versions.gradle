@@ -1,7 +1,8 @@
 // 所有引用库的版本都需要在这里面定义，统一版本
 //每个引用库需注明以下信息：1、功能简介；2、引用（下载地址）
 /**
- *introduction：
+ * introduction：
+ *
  * reference：
  */
 
@@ -33,32 +34,45 @@ versions.test_junit = "4.12"
 versions.androidx_test_ext_junit = "1.1.1"
 versions.androidx_test_espresso = "3.2.0"
 versions.androidx_ktx = "1.1.0"
+versions.androidx_vectordrawable = "1.1.0"
 
 /**
- *introduction：
- * reference：
+ * introduction：To add a dependency on Futures, you must add the Google Maven repository to your project. Read Google's Maven repository for more information.
+ *
+ * reference：https://developer.android.google.cn/jetpack/androidx/releases/concurrent
  */
 versions.androidx_futures = "1.0.0"
+
 /**
- *introduction：
- * reference：
+ * introduction：Lifecycle-aware components perform actions in response to a change in the lifecycle status of another component, such as activities and fragments.
+ * These components help you produce better-organized, and often lighter-weight code, that is easier to maintain. See the reference docs for more information.
+ *
+ * reference：https://developer.android.google.cn/jetpack/androidx/releases/lifecycle
  */
 versions.androidx_lifecycle = "2.1.0"
+
 /**
- *introduction：
- * reference：
+ * introduction：Navigation is a framework for navigating between 'destinations' within an Android application
+ * that provides a consistent API whether destinations are implemented as Fragments, Activities, or other components.
+ *
+ * reference：https://developer.android.google.cn/jetpack/androidx/releases/navigation
  */
 versions.androidx_nav = "2.1.0"
+
 /**
- *introduction：
- * reference：
+ * introduction：The Paging Library makes it easier for you to load data gradually and gracefully within your app's RecyclerView.
+ *
+ * reference：https://developer.android.google.cn/jetpack/androidx/releases/paging
  */
 versions.androidx_paging = "2.1.0"
+
 /**
- *introduction：
- * reference：
+ * introduction：The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
+ *
+ * reference：https://developer.android.google.cn/jetpack/androidx/releases/room
  */
 versions.androidx_room = "2.2.1"
+
 /**
  * introduction：The WorkManager API makes it easy to schedule deferrable, asynchronous tasks that must be run reliably .
  * These APIs let you create a task and hand it off to WorkManager to run when the work constraints are met.

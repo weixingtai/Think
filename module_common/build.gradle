@@ -5,6 +5,13 @@ android {
     compileSdkVersion versions.compile_sdk_version
     buildToolsVersion versions.build_tools_version
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //项目用jvm1.6进行构建，而库用到1.8版本导致不兼容
+    kotlinOptions { jvmTarget = 1.8}
 
     defaultConfig {
         minSdkVersion versions.min_sdk_version
@@ -34,6 +41,14 @@ dependencies {
     api "com.google.android.material:material:$versions.material"
     api "androidx.concurrent:concurrent-futures:$versions.androidx_futures"
     api "androidx.lifecycle:lifecycle-extensions:$versions.androidx_lifecycle"
+
+    api "androidx.vectordrawable:vectordrawable:$versions.androidx_vectordrawable"
+    api "androidx.navigation:navigation-fragment:$versions.androidx_nav"
+    api "androidx.navigation:navigation-ui:$versions.androidx_nav"
+    api "androidx.lifecycle:lifecycle-extensions:$versions.androidx_nav"
+
+
+
     api "androidx.navigation:navigation-fragment-ktx:$versions.androidx_nav"
     api "androidx.navigation:navigation-ui-ktx:$versions.androidx_nav"
     api "androidx.paging:paging-runtime:$versions.androidx_paging"

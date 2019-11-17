@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="module_common_app_bar_height">180dp</dimen>
+    <dimen name="module_common_fab_margin">16dp</dimen>
+    <dimen name="module_common_text_margin">16dp</dimen>
+</resources>

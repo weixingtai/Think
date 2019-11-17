@@ -762,9 +762,13 @@ public Observable<Location> syncLocations() {
 
 Android 开发存在着众多版本的不同，比如 `compileSdkVersion`、`minSdkVersion`、`targetSdkVersion` 以及项目中依赖第三方库的版本，不同的 module 及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
 
-具体可以参考我写的这篇博文：**[Android 开发之版本统一规范][Android 开发之版本统一规范]**。
-
 如果是开发多个系统级别的应用，当多个应用同时用到相同的 `so` 库时，一定要确保 `so` 库的版本一致，否则可能会引发应用崩溃。
+
+1. 新建一个versions.gradle文件；
+
+2. 所有引用库的版本都需要在versions.gradle里面定义，统一版本
+
+3. 每个引用库需注明以下信息：1、功能简介；2、引用（下载地址）
 
 
 ## （六）第三方库规范
